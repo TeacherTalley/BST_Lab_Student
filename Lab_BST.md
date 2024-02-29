@@ -13,6 +13,7 @@ Implement the following methods for the BST class in **`BST.h`**:
 - **`void preorder(std::ostream &out);`** This method traverses the BST using preorder and prints out each data value in the tree. Make sure the data values printed are separated by whitespace. See inorder for examples of how you might implement this method. Verify that your order is correct.
 - **`void postorder(std::ostream &out);`** This method traverses the BST using postorder and prints out each data value in the tree.  Make sure the data values printed are separated by whitespace.  See inorder for examples of how you might implement this method.  Verify that your order is correct.  
 - **`bool search(const DataType& item) const;`** This method searches for the specified data value in the tree.  The value `true` is returned if the value exists in the tree and `false` is returned if it does not exist. 
+- **`void BST<DataType>::search2(const DataType& item, bool& found,BST<DataType>::BinNodePointer& locptr,BST<DataType>::BinNodePointer& parent);`** This method searches for the specified data value in the tree.  The `found`, `locptr`, and `parent` variables are passed by reference.  See the `remove` method to understand how it is used.  The `parent` variable should point to the parent node of `locptr`.  See `insert` for hints on how to manage the parent pointer.
 
 #### Final output
 Your program must compile and produce output.  The final output will not be graded, so you may experiement in your main.
