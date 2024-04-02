@@ -71,6 +71,16 @@ public:
     BST();
 
     /**
+     * @brief Default destructor for the BST class.
+     */
+    ~BST();
+
+    /**
+     * @brief Clears the binary search tree.
+     */
+    void clear();
+
+    /**
      * @brief Checks if the binary search tree is empty.
      * 
      * @return true if the binary search tree is empty, false otherwise.
@@ -145,6 +155,11 @@ private:
         BinNodePointer& locptr, BinNodePointer& parent);
 
     /**
+     * @brief Recursively clears the binary search tree.
+     */
+    void clearAux(BinNodePointer subtreePtr);
+
+    /**
      * Performs an inorder traversal of the binary search tree rooted at subtreePtr
      * and outputs the elements to the specified output stream.
      *
@@ -196,6 +211,33 @@ template <typename DataType>
 inline BST<DataType>::BST()
     : myRoot(nullptr)
 {}
+
+//--- Definition of destructor
+template <typename DataType>
+BST<DataType>::~BST()
+{
+    clear();
+}
+
+//--- Definition of clear()
+template <typename DataType>
+void BST<DataType>::clear()
+{
+    clearAux(myRoot);
+    myRoot = nullptr;
+}
+
+//--- Definition of clearAux()
+template <typename DataType>
+void BST<DataType>::clearAux(BinNodePointer subtreePtr)
+{
+    if (subtreePtr != nullptr)
+    {
+        clearAux(subtreePtr->left);
+        clearAux(subtreePtr->right);
+        delete subtreePtr;
+    }
+}
 
 //--- Definition of empty()
 template <typename DataType>
