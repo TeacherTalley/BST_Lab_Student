@@ -20,19 +20,21 @@ Your program must compile and produce output.  The final output will not be grad
 
 ##### Rubric
 
-| Name                | Description                                                         | Points |
-| ------------------- | ------------------------------------------------------------------- | ------ |
-| Coding Style        | Run cpplint on student code                                         | 10     |
-| BST Empty           |                                                                     | 0      |
-| BST SearchFoundAndNotFound          |                                                                     | 40     |
-| BST Insert          |                                                                     | 0      |
-| BST Delete          |                                                                     | 0      |
-| BST Inorder         |                                                                     | 10     |
-| BST Preorder        |                                                                     | 20     |
-| BST Postorder       |                                                                     | 20     |
-| BST RemoveException |                                                                     | 0      |
-| BST InsertException |                                                                     | 0      |
-| Total Points        |                                                                     | 100    |
+| Name                       | Description                                                         | Points |
+| -------------------------- | ------------------------------------------------------------------- | ------ |
+| AutoTest Setup             | Install test code, copy student source, build student and test code | 0      |
+| Main Output                | Run student main and compare output to test                         | 0      |
+| Coding Style               | Run cpplint on student code                                         | 10     |
+| BST Empty                  |                                                                     | 0      |
+| BST SearchFoundAndNotFound |                                                                     | 20
+| BST Insert                 |                                                                     | 0      |
+| BST Remove                 |                                                                     | 10     |
+| BST Inorder                |                                                                     | 10     |
+| BST Preorder               |                                                                     | 20     |
+| BST Postorder              |                                                                     | 20     |
+| BST RemoveException        |                                                                     | 10     |
+| BST InsertException        |                                                                     | 0      |
+| Total Points               |                                                                     | 100    |
 #### Due Dates and Honor
 The due date is specified on Blackboard. 
 
