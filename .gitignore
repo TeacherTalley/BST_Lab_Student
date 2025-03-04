@@ -11,7 +11,7 @@
 x64
 .vs
 main.exe
-.vs
+*.vs
 
 # VS Code
 .vscode
