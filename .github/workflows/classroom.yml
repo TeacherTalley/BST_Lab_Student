@@ -1,19 +1,130 @@
-name: GitHub Classroom Workflow
-
-on:
-  - push
-  - workflow_dispatch
-
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
 permissions:
   checks: write
   actions: read
   contents: read
-
 jobs:
-  build:
-    name: Autograding
+  run-autograding-tests:
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
     steps:
-      - uses: actions/checkout@v4
-      - uses: education/autograding@v1
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: AutoTest Setup
+      id: autotest-setup
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: AutoTest Setup
+        setup-command: git clone https://github.com/TeacherTalley/BST_AutoTest.git
+        command: cd BST_AutoTest && ./AutoTest_setup.sh
+        timeout: 10
+        max-score: 0
+    - name: Coding Style
+      id: coding-style
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Coding Style
+        setup-command: ''
+        command: "./BST_AutoTest/AutoTest_Style.sh BST_AutoTest main.cpp BST.h"
+        timeout: 10
+        max-score: 10
+    - name: BST Empty
+      id: bst-empty
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: BST Empty
+        setup-command: ''
+        command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.Empty"
+        timeout: 10
+        max-score: 0
+    - name: BST Search Found and Not Found
+      id: bst-search-found-and-not-found
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: BST Search Found and Not Found
+        setup-command: ''
+        command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.SearchFoundAndNotFound"
+        timeout: 10
+        max-score: 20
+    - name: BST Insert
+      id: bst-insert
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: BST Insert
+        setup-command: ''
+        command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.Insert"
+        timeout: 10
+        max-score: 0
+    - name: BST Remove
+      id: bst-remove
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: BST Remove
+        setup-command: ''
+        command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.Remove"
+        timeout: 10
+        max-score: 10
+    - name: BST Inorder
+      id: bst-inorder
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: BST Inorder
+        setup-command: ''
+        command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.Inorder"
+        timeout: 10
+        max-score: 10
+    - name: BST Preorder
+      id: bst-preorder
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: BST Preorder
+        setup-command: ''
+        command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.Preorder"
+        timeout: 10
+        max-score: 20
+    - name: BST Postorder
+      id: bst-postorder
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: BST Postorder
+        setup-command: ''
+        command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.Postorder"
+        timeout: 10
+        max-score: 20
+    - name: BST RemoveException
+      id: bst-removeexception
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: BST RemoveException
+        setup-command: ''
+        command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.RemoveException"
+        timeout: 10
+        max-score: 10
+    - name: BST InsertException
+      id: bst-insertexception
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: BST InsertException
+        setup-command: ''
+        command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.InsertException"
+        timeout: 10
+        max-score: 0
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        AUTOTEST-SETUP_RESULTS: "${{steps.autotest-setup.outputs.result}}"
+        CODING-STYLE_RESULTS: "${{steps.coding-style.outputs.result}}"
+        BST-EMPTY_RESULTS: "${{steps.bst-empty.outputs.result}}"
+        BST-SEARCH-FOUND-AND-NOT-FOUND_RESULTS: "${{steps.bst-search-found-and-not-found.outputs.result}}"
+        BST-INSERT_RESULTS: "${{steps.bst-insert.outputs.result}}"
+        BST-REMOVE_RESULTS: "${{steps.bst-remove.outputs.result}}"
+        BST-INORDER_RESULTS: "${{steps.bst-inorder.outputs.result}}"
+        BST-PREORDER_RESULTS: "${{steps.bst-preorder.outputs.result}}"
+        BST-POSTORDER_RESULTS: "${{steps.bst-postorder.outputs.result}}"
+        BST-REMOVEEXCEPTION_RESULTS: "${{steps.bst-removeexception.outputs.result}}"
+        BST-INSERTEXCEPTION_RESULTS: "${{steps.bst-insertexception.outputs.result}}"
+      with:
+        runners: autotest-setup,coding-style,bst-empty,bst-search-found-and-not-found,bst-insert,bst-remove,bst-inorder,bst-preorder,bst-postorder,bst-removeexception,bst-insertexception
