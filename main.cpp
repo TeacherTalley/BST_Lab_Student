@@ -1,5 +1,7 @@
 #include <iostream>
+#include <string>
 #include "BST.h"
+
 int main()
 {
     BST<int> intBST;
