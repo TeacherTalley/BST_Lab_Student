@@ -136,6 +136,20 @@ public:
     void postorder(std::ostream &out, std::string separator = "  ");
 
     /**
+     * Finds the minimum value in the binary search tree.
+     * @return The minimum value in the binary search tree.
+     * @throws std::runtime_error if tree is empty.
+     */
+    DataType &findMin() const;
+
+    /**
+     * Finds the maximum value in the binary search tree.
+     * @return The maximum value in the binary search tree.
+     * @throws std::runtime_error if tree is empty.
+     */
+    DataType &findMax() const;
+
+    /**
      * @brief Prints the graphical representation of the binary search tree.
      *
      * @param out The output stream to print the graph to.
@@ -406,7 +420,17 @@ void BST<DataType>::postorderAux(std::ostream &out,
     // add code here
 }
 
+template <class DataType>
+DataType &BST<DataType>::findMin() const
+{
+    // add code here
+}
 
+template <class DataType>
+DataType &BST<DataType>::findMax() const
+{
+    // add code here
+}
 
 //--- Definition of graphAux()
 #include <iomanip>
