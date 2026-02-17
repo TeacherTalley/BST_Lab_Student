@@ -75,7 +75,7 @@ jobs:
         setup-command: ''
         command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.Inorder"
         timeout: 10
-        max-score: 10
+        max-score: 0
     - name: BST Preorder
       id: bst-preorder
       uses: classroom-resources/autograding-command-grader@v1
@@ -84,7 +84,7 @@ jobs:
         setup-command: ''
         command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.Preorder"
         timeout: 10
-        max-score: 20
+        max-score: 10
     - name: BST Postorder
       id: bst-postorder
       uses: classroom-resources/autograding-command-grader@v1
@@ -93,7 +93,7 @@ jobs:
         setup-command: ''
         command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.Postorder"
         timeout: 10
-        max-score: 20
+        max-score: 10
     - name: BST RemoveException
       id: bst-removeexception
       uses: classroom-resources/autograding-command-grader@v1
@@ -112,6 +112,24 @@ jobs:
         command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.InsertException"
         timeout: 10
         max-score: 0
+    - name: BST FindMinInt
+      id: bst-findminint
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: BST FindMinInt
+        setup-command: ''
+        command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.FindMinInt"
+        timeout: 10
+        max-score: 15
+    - name: BST FindMaxInt
+      id: bst-findmaxint
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: BST FindMaxInt
+        setup-command: ''
+        command: "./BST_AutoTest/AutoTest_gtest.sh BSTTest.FindMaxInt"
+        timeout: 10
+        max-score: 15
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
@@ -126,5 +144,7 @@ jobs:
         BST-POSTORDER_RESULTS: "${{steps.bst-postorder.outputs.result}}"
         BST-REMOVEEXCEPTION_RESULTS: "${{steps.bst-removeexception.outputs.result}}"
         BST-INSERTEXCEPTION_RESULTS: "${{steps.bst-insertexception.outputs.result}}"
+        BST-FINDMININT_RESULTS: "${{steps.bst-findminint.outputs.result}}"
+        BST-FINDMAXINT_RESULTS: "${{steps.bst-findmaxint.outputs.result}}"
       with:
-        runners: autotest-setup,coding-style,bst-empty,bst-search-found-and-not-found,bst-insert,bst-remove,bst-inorder,bst-preorder,bst-postorder,bst-removeexception,bst-insertexception
+        runners: autotest-setup,coding-style,bst-empty,bst-search-found-and-not-found,bst-insert,bst-remove,bst-inorder,bst-preorder,bst-postorder,bst-removeexception,bst-insertexception,bst-findminint,bst-findmaxint
